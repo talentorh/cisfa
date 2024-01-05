@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 date_default_timezone_set('America/Monterrey');
-require_once ('app/lib/pdf/fpdf.php');
+require ('app/lib/pdf/fpdf.php');
 require 'conexion.php';
 $hoy=date("Y-m-d");
 $costos=base64_decode($_GET['total']);

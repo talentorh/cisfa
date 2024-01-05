@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(0);
-require_once ('app/lib/pdf/fpdf.php');
+require ('app/lib/pdf/fpdf.php');
 include('phpqrcode/qrlib.php');
 require 'conexion.php';
 
