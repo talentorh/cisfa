@@ -1,0 +1,96 @@
+#menu {
+	text-align: center;
+	font-size: 0.7em;
+	width: 900px;
+    margin: 20px auto;
+    float: left;
+    margin-left: 15%;
+}
+
+#menu ul {
+	list-style-type: none;
+}
+
+#menu ul li {
+	width: 152px;
+}
+
+#menu ul li a {
+	display: block;
+    text-decoration: none;
+	color: rgb(0, 0, 0);
+	background-color: rgb(223, 223, 223);
+	margin-top: 0px;
+    padding: 0px;
+    font-size: 13px;
+	position: relative;
+}
+
+#menu ul li ul li a {
+	width: 282px;
+	padding: 0px 0px;
+	border-top-color: transparent;
+}
+
+#menu ul li ul {
+	display: none;
+}
+
+/* PROPIEDADES ESPECÍFICAS */
+
+#menu ul li ul li ul li a.primera {
+	border-top-color: #fff;
+}
+
+#menu ul li.nivel1 { 
+	float: left;
+    margin-right: 1px;
+
+}
+
+#menu ul li a.nivel2 {
+	color: #000;
+}
+
+#menu ul li a.nivel1, #menu ul li a.nivel2 {
+	display: block;
+	position: relative;
+}
+
+/* PROPIEDAD HOVER */
+
+#menu ul li:hover {
+	position: relative;
+}
+
+#menu ul li a:hover, #menu ul li:hover a.nivel1 {
+	background-color: #6CC;
+	color: #000;
+	position: relative;
+}
+
+#menu ul li:hover  ul.nivel2, #menu ul li a:hover  ul.nivel2{
+	display: block;
+    position: absolute;left: 0px;
+    z-index: 1000;
+}
+
+#menu ul li ul li a:hover ul.nivel3, #menu ul li ul li:hover ul.nivel3 {
+	display: block;
+	position: absolute;
+	left: 181px;
+    top:0px;
+    z-index: 2000;
+    
+}
+
+#menu ul li ul li a:hover {
+	border-top-color: #000;
+	position: relative;
+}
+
+
+
+
+
+

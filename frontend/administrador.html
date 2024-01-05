@@ -1,0 +1,79 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://framework-gb.cdn.gob.mx/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <title>Usuarios</title>
+
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="rol-user.js"></script>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+ 
+    <div class="rol-user">
+        
+        <div class="cabecera">
+            <h1>Modificar rol de usuario</h1>
+            
+
+            <form action="aplicarRol.php" method="post" >
+              
+                  <input type="number" class="id_user" name="usuario_id" placeholder="Ingresa el ID del trabajadors"><br>
+
+                  <input type="checkbox" name="cargar" > Cargar<br>
+              
+                  <input type="checkbox" name="modificar" >Modificar<br>
+              
+                  <input type="checkbox" name="eliminar" >Eliminar
+              
+                
+              
+                  <div class="form-footer">
+
+                    <input type="submit" class="btn btn-info" name="aplicar" value="Aplicar" style="float: right; margin-right: 30%; margin-top: 25px;">
+                    
+    
+                </div>
+              
+              </form>
+    
+    </div>
+    
+    <div class="contenedor">
+        
+        <main>
+            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." style="float: left; margin-left: -100%; position: relative; margin-top: -115px;"/>
+            <section id="tabla_resultado2" style="float: left; margin-left: -136%; margin-top: -10%;">
+                <!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
+             
+                </section>
+                
+            </main>
+            
+            
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="frontend/js/script.js"></script>
+</body>
+</html>
