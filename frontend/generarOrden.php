@@ -191,7 +191,7 @@ $this->Cell(800, 1, '',0, 0, 'C', 'true');
     
     $this->SetFont('Arial','I',8);
     //Número de página
-    $this->Image('imagenes/imagen1.jpg' , 0 ,550, 840 , 40);
+    $this->Image('imagenes/Imagen1.jpg' , 0 ,550, 840 , 40);
    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
    
       }

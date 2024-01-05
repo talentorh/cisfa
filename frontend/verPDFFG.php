@@ -173,7 +173,7 @@ $this->Cell(800, 1, '',0, 0, 'C', 'true');
 
    // QRcode::png("Proveedor: ".$contenido."Nombre del curso: ".' '. $contenido2.''."Fecha: ".''.$fechaActual, "resultado.png", QR_ECLEVEL_L,5,2);
     //$this->Image('resultado.png', 150 ,13, 55 , 55);
-    $this->Image('imagenes/imagen1.jpg' , 0 ,550, 840 , 40);
+    $this->Image('imagenes/Imagen1.jpg' , 0 ,550, 840 , 40);
    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
    
       }
