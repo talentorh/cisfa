@@ -51,23 +51,7 @@ function selectDate(val)
     });
     
 }
-function selectDate2022(val)
-{
-    let dateFrom6 = $("#dateFrom6").val();
-    let dateTo6 = $("#dateTo6").val();
-    let ob = {dateFrom6:dateFrom6, dateTo6:dateTo6}
-    $.ajax({
-        type: "POST",
-        url: 'consultaFechaSalidas2022.php',
-        data: ob,
-        success: function(resp){
-            $('#tabla_resultado').html(resp);
-           
-        }
-        
-    });
-    
-}
+
 
 function selectDateCovid(val)
 {

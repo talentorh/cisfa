@@ -1,4 +1,4 @@
-<div id="myModal_salidasCisfa2022" class="modal fade in" role="dialog">
+<div id="myModal_salidasCisfa2024" class="modal fade in" role="dialog">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <div class="modal-dialog modal-sm">
@@ -6,8 +6,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background: green; color: white; height: 50px;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="font-size: 16px;">Medicamentos en O.S 2022</h4>
+            
+                <h4 class="modal-title" style="font-size: 16px;">Medicamentos en O.S 2024</h4>
             </div>
             <div class="modal-body">
 
@@ -49,7 +49,27 @@
 
             ?>
             
+            
                             </select>--><br>
+                        <script>
+                            function selectDate2022(val)
+{
+    let dateFrom6 = $("#dateFrom6").val();
+    let dateTo6 = $("#dateTo6").val();
+    let ob = {dateFrom6:dateFrom6, dateTo6:dateTo6}
+    $.ajax({
+        type: "POST",
+        url: 'consultaFechaSalidas2024.php',
+        data: ob,
+        success: function(resp){
+            $('#tabla_resultado').html(resp);
+           
+        }
+        
+    });
+    
+}
+                        </script>
                 <strong id="strong" style="color:black;">Fecha inicio:</strong><br>
                 <input type="date" id="dateFrom6" class="form-control" required="required" value="" style="width: 100%;">
 

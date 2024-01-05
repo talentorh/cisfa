@@ -5,7 +5,7 @@ $dateTo = base64_decode($_GET['dateTo']);
 	
 	//Consulta
 	 
-    $sql=$conexion2->query("SELECT proveedores.*, ordensuministro.*, datosproveedor.datoPersonalProveedor FROM proveedores INNER JOIN datosproveedor on datosproveedor.id_datoProveedor = proveedores.numero_proveedor INNER join ordensuministro on ordensuministro.numerodecontrato = proveedores.numero_pedido WHERE ordensuministro.fechaorden BETWEEN '$dateFrom' AND '$dateTo' AND proveedores.year = '2022' AND ordensuministro.cantidad is not null AND proveedores.tipoFarmacia = 'intrahospitalaria 2022'");
+    $sql=$conexion2->query("SELECT proveedores.*, ordensuministro.*, datosproveedor.datoPersonalProveedor FROM proveedores INNER JOIN datosproveedor on datosproveedor.id_datoProveedor = proveedores.numero_proveedor INNER join ordensuministro on ordensuministro.numerodecontrato = proveedores.numero_pedido WHERE ordensuministro.fechaorden BETWEEN '$dateFrom' AND '$dateTo' AND proveedores.year = '2024' AND ordensuministro.cantidad is not null AND proveedores.tipoFarmacia = 'intrahospitalaria 2024'");
 
 $salida = "";
 $salida .= "<table style='color: black; font-size: 12px;' border=1>";
@@ -52,7 +52,7 @@ while($r = $sql->fetch_assoc()){
 
 $salida .= "</table>";
 header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename=solicitadoenOS_".time().".xls");
+header("Content-Disposition: attachment; filename=solicitadoenOS2024_".time().".xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 echo $salida;
