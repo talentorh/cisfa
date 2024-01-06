@@ -87,7 +87,8 @@ $query = $conexion2->query("SELECT
     proveedores.tipoFarmacia,
     proveedores.vigencia_pedido_inicio,
     proveedores.vigencia_pedido_final,
-    proveedores.tipoadjudicacion
+    proveedores.tipoadjudicacion,
+    proveedores.year
     FROM proveedores left outer join datosproveedor on datosproveedor.id_datoProveedor = proveedores.numero_proveedor where proveedores.year = $contrato and tipoFarmacia = '$tipo' ORDER by datosproveedor.datoPersonalProveedor asc");
 
 ?>
@@ -113,8 +114,8 @@ $query = $conexion2->query("SELECT
         while ($dataRegistro = mysqli_fetch_assoc($query)) {
             $id = $dataRegistro['id_proveedor'];
             $contrato = $dataRegistro['numero_pedido'];
-
-            $sql_r = $conexion2->query("SELECT sum(MINIMOPRECIO) as total1, sum(MAXIMOPRECIO) as total2 from listamedicamento where numeroContrato = '$contrato'");
+            $fechaContrato = $dataRegistro['year'];
+            $sql_r = $conexion2->query("SELECT sum(MINIMOPRECIO) as total1, sum(MAXIMOPRECIO) as total2 from listamedicamento where id_contrato = $id and fechaContrato = '$fechaContrato'");
             $resp = mysqli_fetch_assoc($sql_r);
 
             $min = $resp['total1'];
