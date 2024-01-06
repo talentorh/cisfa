@@ -117,7 +117,7 @@ $query = $conexion2->query("SELECT
             $maximo = $dataRegistro['total_maximo'];
             $contrato = $dataRegistro['numero_pedido'];
 
-            $sql_r = $conexion2->query("SELECT sum(MINIMOPRECIO) as total1, sum(MAXIMOPRECIO) as total2 from listamedicamento where id_contrato = $id and fechaContrato = $fechaContrato");
+            $sql_r = $conexion2->query("SELECT sum(MINIMOPRECIO) as total1, sum(MAXIMOPRECIO) as total2 from listamedicamento where id_contrato = $id and fechaContrato = '$fechaContrato'");
             $resp = mysqli_fetch_assoc($sql_r);
 
             $min = $resp['total1'];
