@@ -139,7 +139,7 @@ class PDF extends FPDF {
 Centro Integral de Servicios Farmacéuticos.');
         // Logo
         $this->Image('imagenes/images.png', 25 ,15, 50 , 50);
-        //$this->Image('imagenes/logo3.jpg' , 85 ,15, 50 , 50);
+        $this->Image('imagenes/ImagenIMSS.jpg' , 75 ,10, 85 , 65);
         
         $this->SetFont('Times','',8);
         // Movernos a la derecha
