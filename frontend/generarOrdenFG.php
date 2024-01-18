@@ -166,8 +166,8 @@ class PDF extends FPDF {
         $direccion = utf8_decode('Dirección de Operaciones.
 Centro Integral de Servicios Farmacéuticos.');
         // Logo
-        $this->Image('imagenes/images.png', 25 ,15, 50 , 50);
-        $this->Image('imagenes/ImagenIMSS.jpg' , 75 ,10, 85 , 65);
+        $this->Image('imagenes/ImagenIMSS.jpg', 20 ,10, 100 , 70);
+        $this->Image('imagenes/images.png' , 107 ,15, 47 , 55);
         
         $this->SetFont('Times','',8);
         // Movernos a la derecha
