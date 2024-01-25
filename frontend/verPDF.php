@@ -6,7 +6,9 @@ require 'conexion.php';
 
 $var= base64_decode($_GET['var']);
 $num = base64_decode($_GET['valor2']);
-
+$sqloperador = $conexion2->query("SELECT claveUnicaOrden from direccionoperadorlogistico where claveUnicaOrden = '$num'");
+  $rowoperador = mysqli_fetch_assoc($sqloperador);
+$validaclaveoperador = $rowoperador['claveUnicaOrden'];
 $sql2 = "SELECT *, numeroorden.totalOrden from proveedores inner join numeroorden on numeroorden.claveUnicaContrato='$num' where id_proveedor= $var ";
 $resultado = mysqli_query($conexion2, $sql2);
 //$row2 = mysqli_fetch_assoc($resultado);
@@ -14,7 +16,7 @@ $sql = "SELECT ordensuministro.partidaPresupuestal, ordensuministro.claveHraei, 
 ordensuministro.unidadMedida, ordensuministro.minimo, ordensuministro.maximo, ordensuministro.id_ordenSuministro, ordensuministro.cantidad, ordensuministro.precioUnitario,
 ordensuministro.importe, ordensuministro.claveUnicaOrden, ordensuministro.claveContrato, proveedores.numero_pedido, proveedores.numero_procedimiento, numeroorden.totalOrden, numeroorden.fechaRegistro from ordensuministro left join proveedores on proveedores.id_proveedor =$var inner join numeroorden on claveUnicaContrato = '$num' and ordensuministro.claveUnicaOrden ='$num' and ordensuministro.claveContrato =$var";
 $result = mysqli_query($conexion2, $sql);
- 
+
 class PDF extends FPDF {
 
     var $tablewidths;
@@ -269,7 +271,12 @@ Encargado de los Asuntos Inherentes del Centro Integral de Servicios Farmacéuti
     $pdf->Ln(25);
     $pdf->Cell(300, -70, utf8_decode('Número de procedimiento: ').$row_s['numero_procedimiento'], 0);
     $pdf->Ln(-25);
-    $pdf->MultiCell(300, 10, ('Domicilio de entrega: ').utf8_decode($domicilio), 0);
+    if($validaclaveoperador != ''){
+    $domiciliobirnmex = "OPERADOR LOGÍSTICO BOULEVARD TULTITLÁN ORIENTE NO. 12, SANTIAGUITO, TULTITLÁN DE MARIANO ESCOBEDO, ESTADO DE MÉXICO, C.P. 54900";
+    $pdf->MultiCell(300, 10, ('LUGAR DE ENTREGA: ').utf8_decode($domiciliobirnmex), 0);
+    }
+    $pdf->Ln(0);
+    $pdf->MultiCell(300, 10, ('LUGAR DE ENTREGA FINAL: ').utf8_decode($domicilio), 0);
     $pdf->Ln(5);
     $pdf->MultiCell(300, 10, ('Fecha de entrega:').utf8_decode($fecha), 0);
     $pdf->SetFont('Arial', 'B', 7);

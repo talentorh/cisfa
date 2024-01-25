@@ -10,7 +10,17 @@ $valor2=base64_decode($_GET['claveContrato']);
 
 $var= base64_decode($_GET['var']);
 $num = base64_decode($_GET['valor2']);
+$birmex = base64_decode($_GET['birmex']);
+if($birmex != ''){
+  $sqlGuardaClave = $conexion2->query("INSERT into direccionoperadorlogistico(claveUnicaOrden) values('$birmex')");
+}
+if($birmex == ''){
+  $sqlDelete = $conexion2->query("DELETE from direccionoperadorlogistico where claveUnicaOrden = '$num'");
+}
 
+$sqloperador = $conexion2->query("SELECT claveUnicaOrden from direccionoperadorlogistico where claveUnicaOrden = '$num'");
+  $rowoperador = mysqli_fetch_assoc($sqloperador);
+  $validaclaveoperador = $rowoperador['claveUnicaOrden'];
 
 
 /*$quer = $conexion2->query("UPDATE ordensuministro

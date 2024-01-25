@@ -460,14 +460,24 @@
   </div>
 
 
-
-  <a href="principal" class="btn btn-info" style="width: 170px; margin-left: 50px; margin-top: 0px;">Finalizar edición</a>
+  <div class="col-md-2">
+<a href="principal" class="btn btn-info" style="width: 170px; margin-left: 50px; margin-top: 0px;">Finalizar edición</a>
+  </div>
+  <div class="col-md-2">
+<select name="agregarbirmex" id="agregarbirmex" class="form-control" required style="height: 32px;">
+            <option value="" selected disabled>Se incluye dirección de Birmex</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+</select>
+  </div>
   <?php
 
   $claveUnicaEncriptada = base64_encode($claveUnica3);
   $montoEncriptado = base64_encode($var);
-  echo '<a href="editarMontoOrden?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '" class="btn btn-success" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;">Aplicar cambios</a>';
+  echo '<a href="editarMontoOrden?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '&birmex=' . $claveUnica3 . '" class="btn btn-success" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;" id="seagregabirmex">Aplicar cambios</a>';
+  echo '<a href="editarMontoOrden?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '&birmex=" class="btn btn-warning" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;" id="sinbirmex">Aplicar cambios</a>';
   ?>
+  
   <?php
   /*
                             echo '<a href="listar_Medicamento" target="blank" <i class="btn btn-warning" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Estado Min y Max</i></a>';
@@ -478,6 +488,23 @@
       location.reload();
 
     };
+    $(document).ready(function () {
+      $('#seagregabirmex').prop("hidden", true);
+      $('#sinbirmex').prop("hidden", true);
+$('#agregarbirmex').change(function (e) {
+    if ($(this).val() === "Si") {
+
+      $('#seagregabirmex').prop("hidden", false);
+      $('#sinbirmex').prop("hidden", true);
+    } else if($(this).val() === "No"){
+      $('#sinbirmex').prop("hidden", false);
+      $('#seagregabirmex').prop("hidden", true);
+
+    }
+})
+
+
+});
   </script>
   </div>
 </body>

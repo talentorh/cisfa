@@ -404,24 +404,46 @@
       </table>
     </div>
   </div>
-
+  
   <?php
 
-  echo '<a href="Orden?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '" class="btn btn-success" style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);">GENERAR ORDEN</a>';
-
-
-
+  echo '<a href="Orden?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '&birmex=' . $claveUnica . '" class="btn btn-success" style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);" id="seagregabirmex">GENERAR ORDEN</a>';
+  echo '<a href="Orden?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '&birmex=" class="btn btn-warning" style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);" id="sinbirmex">GENERAR ORDEN</a>';
   ?>
+
   <?php
   echo '<a href="cancelarOrden?var=' . $id_unico . '&valor2=' . $claveUnica . '" class="btn btn-danger" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Eliminar orden</a>';
   ?>
-  <a href="" class="btn btn-info" onclick="window.close();" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Finalizar</a>
-  
+  <a href="" class="btn btn-info" onclick="actualiza();" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Finalizar</a>
+  <div class="col-md-2">
+<select name="agregarbirmex" id="agregarbirmex" class="form-control" required style="height: 32px;">
+            <option value="" selected disabled>Se incluye dirección de Birmex</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+</select>
+  </div>
   <script>
     function actualiza() {
-      location.reload();
+      window.close();
 
     };
+    $(document).ready(function () {
+      $('#seagregabirmex').prop("hidden", true);
+      $('#sinbirmex').prop("hidden", true);
+$('#agregarbirmex').change(function (e) {
+    if ($(this).val() === "Si") {
+
+      $('#seagregabirmex').prop("hidden", false);
+      $('#sinbirmex').prop("hidden", true);
+    } else if($(this).val() === "No"){
+      $('#sinbirmex').prop("hidden", false);
+      $('#seagregabirmex').prop("hidden", true);
+
+    }
+})
+
+
+});
   </script>
   </div>
 </body>

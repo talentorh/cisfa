@@ -9,8 +9,14 @@ $valor2= base64_decode($_GET['claveContrato']);
 
 $var= base64_decode($_GET['var']);
 $num = base64_decode($_GET['valor2']);
+$birmex = $_GET['birmex'];
 
-
+if($birmex != ''){
+    $sqlGuardaClave = $conexion2->query("INSERT into direccionoperadorlogistico(claveUnicaOrden) values('$birmex')");
+  }
+  if($birmex == ''){
+    $sqlDelete = $conexion2->query("DELETE from direccionoperadorlogistico where claveUnicaOrden = '$valor2'");
+  }
 
 $querY = "UPDATE numeroorden set totalOrden= $costos, fechaRegistro= '$hoy'
 where claveUnicaContrato = '$valor2' limit 1";

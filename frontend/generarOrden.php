@@ -10,8 +10,18 @@ $valor2=base64_decode($_GET['claveContrato']);
 
 $var= base64_decode($_GET['var']);
 $num = base64_decode($_GET['valor2']);
+$birmex = base64_decode($_GET['birmex']);
+if($birmex != ''){
+  $sqlGuardaClave = $conexion2->query("INSERT into direccionoperadorlogistico(claveUnicaOrden) values('$birmex')");
+}
+if($birmex == ''){
+  $sqlDelete = $conexion2->query("DELETE from direccionoperadorlogistico where claveUnicaOrden = '$num'");
+}
 
 
+$sqloperador = $conexion2->query("SELECT claveUnicaOrden from direccionoperadorlogistico where claveUnicaOrden = '$num'");
+  $rowoperador = mysqli_fetch_assoc($sqloperador);
+  $validaclaveoperador = $rowoperador['claveUnicaOrden'];
 /*$quer = $conexion2->query("UPDATE ordensuministro
 INNER JOIN numeroorden ON ordensuministro.claveUnicaOrden = numeroorden.claveUnicaContrato
 SET ordensuministro.fechaorden = numeroorden.fechaRegistro
@@ -289,7 +299,12 @@ Encargado de los Asuntos Inherentes del Centro Integral de Servicios Farmacéuti
     $pdf->Ln(25);
     $pdf->Cell(300, -70, utf8_decode('Número de procedimiento: ').$row_s['numero_procedimiento'], 0);
     $pdf->Ln(-25);
-    $pdf->MultiCell(300, 10, ('Domicilio de entrega: ').utf8_decode($domicilio), 0);
+    if($validaclaveoperador != ''){
+    $domiciliobirnmex = "OPERADOR LOGÍSTICO BOULEVARD TULTITLÁN ORIENTE NO. 12, SANTIAGUITO, TULTITLÁN DE MARIANO ESCOBEDO, ESTADO DE MÉXICO, C.P. 54900";
+    $pdf->MultiCell(300, 10, ('LUGAR DE ENTREGA: ').utf8_decode($domiciliobirnmex), 0);
+    }
+    $pdf->Ln(0);
+    $pdf->MultiCell(300, 10, ('LUGAR DE ENTREGA FINAL: ').utf8_decode($domicilio), 0);
     $pdf->Ln(5);
     $pdf->MultiCell(300, 10, ('Fecha de entrega:').utf8_decode($fecha), 0);
     $pdf->SetFont('Arial', 'B', 7);
