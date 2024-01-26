@@ -414,7 +414,7 @@
   <?php
   echo '<a href="cancelarOrden?var=' . $id_unico . '&valor2=' . $claveUnica . '" class="btn btn-danger" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Eliminar orden</a>';
   ?>
-  <a href="" class="btn btn-info" onclick="actualiza();" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Finalizar</a>
+  <a href="" class="btn btn-info" onclick="window.close();" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Finalizar</a>
   <div class="col-md-2">
 <select name="agregarbirmex" id="agregarbirmex" class="form-control" required style="height: 32px;">
             <option value="" selected disabled>Se incluye dirección de Birmex</option>
@@ -424,7 +424,7 @@
   </div>
   <script>
     function actualiza() {
-      window.close();
+      location.reload();
 
     };
     $(document).ready(function () {
