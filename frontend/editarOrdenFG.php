@@ -428,12 +428,13 @@
             <option value="Si">Si</option>
             <option value="No">No</option>
 </select>
+  </div>
   <?php
 
   $claveUnicaEncriptada = base64_encode($claveUnica3);
   $montoEncriptado = base64_encode($var);
-  echo '<a href="editarMontoOrdenFG?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '&id_orden=' . $id_orden2 . '&birmex=' . $claveUnica3 . '" class="btn btn-success" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;">Aplicar cambios</a>';
-  echo '<a href="editarMontoOrdenFG?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '&id_orden=' . $id_orden2 . '&birmex=" class="btn btn-warnign" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;">Aplicar cambios</a>';
+  echo '<a href="editarMontoOrdenFG?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '&id_orden=' . $id_orden2 . '&birmex=' . $claveUnica3 . '" class="btn btn-success" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;" id="seagregabirmex">Aplicar cambios</a>';
+  echo '<a href="editarMontoOrdenFG?claveContrato=' . $claveUnicaEncriptada . '&total=' . $montoEncriptado . '&id_orden=' . $id_orden2 . '&birmex=" class="btn btn-warning" style="width: 170px; float: right; margin-right: 50px; margin-top: 0px;" id="sinbirmex">Aplicar cambios</a>';
   ?>
   <?php
   /*
