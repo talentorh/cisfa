@@ -26,7 +26,7 @@ $buscarAlumnos = mysqli_query($conexion2, $sql);
 
 $salida .=
 
-    '<th>Numero de orden</th><th>Clave HRAEI</th><th>CNIS</th><th>CUCOP</th><th>Descripcion</th><th>Cantidad</th><th>Precio Unitario</th><th>Importe</th><th>Fecha 1</th><th>Pzas 1</th><th>Fecha 2</th><th>Pzas 2</th><th>Fecha 3</th><th>Pzas 3</th><th>Fecha 4</th><th>Pzas 4</th><th>Fecha 5</th><th>Pzas 5</th><th>Fecha de orden</th><th>Numero de contrato</th>';
+    '<th>Numero de orden</th><th>Clave HRAEI</th><th>CNIS</th><th>CUCOP</th><th>Descripcion</th><th>Minimo consumo</th><th>Maximo consumo</th><th>Cantidad</th><th>Precio Unitario</th><th>Importe</th><th>Fecha 1</th><th>Pzas 1</th><th>Fecha 2</th><th>Pzas 2</th><th>Fecha 3</th><th>Pzas 3</th><th>Fecha 4</th><th>Pzas 4</th><th>Fecha 5</th><th>Pzas 5</th><th>Fecha de orden</th><th>Numero de contrato</th>';
 
 
 
@@ -38,6 +38,8 @@ while ($rs = $buscarAlumnos->fetch_assoc()) {
     <td>" . mb_convert_encoding($rs['cuadroBasico'], 'ISO-8859-1', 'UTF-8') . "</td>
     <td>" . mb_convert_encoding($rs['cucop'], 'ISO-8859-1', 'UTF-8') . "</td>
     <td>" . mb_convert_encoding($rs['descripcionDelBien'], 'ISO-8859-1', 'UTF-8') . "</td>
+    <td>" . mb_convert_encoding($rs['minimo'], 'ISO-8859-1', 'UTF-8') . "</td>
+    <td>" . mb_convert_encoding($rs['maximo'], 'ISO-8859-1', 'UTF-8') . "</td>
     <td>" . mb_convert_encoding($rs['cantidad'], 'ISO-8859-1', 'UTF-8') . "</td>
     <td>" . mb_convert_encoding(formatMoney($rs['precioUnitario']), 'ISO-8859-1', 'UTF-8') . "</td>
     <td>" . mb_convert_encoding(formatMoney($rs['importe']), 'ISO-8859-1', 'UTF-8') . "</td>
