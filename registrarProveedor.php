@@ -9,9 +9,9 @@
 <body>
 
 <?php session_start();
+if(isset($_POST['almacenarProveedor'])){
 
-
-   error_reporting(0);
+   //error_reporting(0);
     
     $nombre_proveedor = $_POST['datoPersonalProveedor'];
     $domicilio= $_POST['domicilioPersonal'];
@@ -22,8 +22,7 @@
     $direccionInternet = $_POST['direccionInternet'];
     
         require "conexion.php";
-
-        $statement = $conexion5->prepare('INSERT INTO datosproveedor (id_datoProveedor,
+        $statement = $conexion->prepare('INSERT INTO datosproveedor (id_datoProveedor,
         datoPersonalProveedor,
         domicilioPersonal,
         telefono, 
@@ -49,23 +48,16 @@
             ':rfc' => $rfc,
             ':direccionInternet' => $direccionInternet
         
-          
+        
         ));
         
-       if($statement != false) {
+    if($statement != false) {
     
-        echo "<script>swal({
-            title: 'Good',
-            timer: 1000,
-            showConfirmButton: false
-          
-            });
-            </script>";
-       }else{
-           echo "<script>alert('Error inesperado, intente nuevamente');</script>";
-       }
-
-   echo "<script>setTimeout('window.history.back();',1000);</script>"
+        echo "<script>alert('Proveedor cargado correctamente.');window.history.back();</script>";
+    }else{
+        echo "<script>alert('Error inesperado, intente nuevamente');</script>";
+    }
+}
 
 ?>
     

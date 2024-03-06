@@ -53,19 +53,18 @@
                                 <input name="numeroDeProcedimiento" id="numeroDeProcedimiento" type="text" class="form-control">
 
                             </div>
+                            <div class="modal-footer">
+                <input type="submit" class="btn btn-info" name="almacenarProveedor" value="Guardar" >
+
+
+            </div>
                         </div>
-                        <br>
+                        </form>
                 </div>
 
                 <div id="panel_respuesta_edicion"></div>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" class="btn btn-info" name="almacenarProveedor" value="Guardar" onclick="btn_guardar_proveedor();">
-
-
             </div>
         </div>
     </div>
 </div>
 </div>
-</form>
