@@ -132,9 +132,12 @@ function select_contrato2024(){
         <div class="dropdown-menu" style="margin: 0px; font-size: 14px; padding: 0px; background: #F8F8F8;">
                 <input type="hidden" value="gratuita 2023" id="tipo5">
                 <input type="hidden" value="2023" id="year3">
+          <a class="dropdown-item" href="#" onclick="tipoFarmaciafg2022();" style="font-size: 13px;">2022</a>
           <a class="dropdown-item" href="#"  onclick="tipoFarmacia4();" style="font-size: 13px;">2023</a>
                 <input type="hidden" value="gratuita 2024" id="tipo6">
                 <input type="hidden" value="2024" id="year4">
+                <input type="hidden" value="gratutita 2022" id="tipo22">
+                <input type="hidden" value="2022" id="year22">
                 <script>
                 function tipoFarmaciafg2024()
 { 
@@ -157,8 +160,29 @@ function select_contrato2024(){
                   }
                });
 }
+function tipoFarmaciafg2022()
+{ 
+   let ID_usuario =  $("#tipo22").val();
+   let year = $("#year22").val();
+      let ob = {ID_usuario:ID_usuario, year:year};
+
+      $.ajax({
+                  type: "POST",
+                  url:"consultaSuministrosFG.php",
+                  data: ob,
+                  beforeSend: function(objeto){
+                  
+                  },
+                  success: function(data)
+                  { 
+               
+                  $("#tabla_resultado").html(data);
+            
+                  }
+               });
+}
             </script>
-          <a class="dropdown-item" href="#" onclick="tipoFarmaciafg2024();" style="font-size: 13px;">2024</a>
+        <a class="dropdown-item" href="#" onclick="tipoFarmaciafg2024();" style="font-size: 13px;">2024</a>
         <a class="dropdown-item" href="#" target="_blank" style="font-size: 13px;" data-toggle="modal" data-target="#myModal_editarOrden">Editar orden de suministro</a>
         <a class="dropdown-item" href="#" target="_blank" style="font-size: 13px;"  data-toggle="modal" data-target="#myModal_cancelarOrden">Cancelar orden de suministro</a>
         </div>

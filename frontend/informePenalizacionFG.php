@@ -18,8 +18,8 @@ $totalMaximoPenalizar = $_GET['totalMaximoPenalizar'];
 
 $actualizaMonto = "UPDATE oficiospenalizcion set montoIncumplimiento = $total where numOficioPenalizacion = '$valor'";
 $result = mysqli_query($conexion2, $actualizaMonto);
-/*$actualizarFecha = "UPDATE oficiospenalizcion set fechaRegistroPenalizacion ='$hoy' where numOficioPenalizacion = '$valor'";
-$result = mysqli_query($conexion2, $actualizarFecha);*/
+$actualizarFecha = "UPDATE oficiospenalizcion set fechaRegistroPenalizacion ='$hoy' where numOficioPenalizacion = '$valor'";
+$result = mysqli_query($conexion2, $actualizarFecha);
 $actualizarClave = "UPDATE oficiospenalizcion set claveContratoPrincipal =$var where numOficioPenalizacion = '$valor'";
 $result = mysqli_query($conexion2, $actualizarClave);
 $querY = "UPDATE oficiospenalizcion set claveContrato= '$num'
