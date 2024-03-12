@@ -25,6 +25,8 @@ $result = mysqli_query($conexion2, $actualizarClave);
 $querY = "UPDATE oficiospenalizcion set claveContrato= '$num'
  where numOficioPenalizacion = '$valor' limit 1";
 $edita= mysqli_query($conexion2, $querY); 
+$sqlfecha = $conexion2->query("SELECT fechaRegistroPenalizacion from oficiospenalizcion where numOficioPenalizacion = '$valor'");
+  $rowfechapenalizacion = mysqli_fetch_assoc($sqlfecha);
 $sql2 = "SELECT *, numeroorden.totalOrden, numeroorden.fechaEntrego, ordensuministro.claveHraei, ordensuministro.descripcionDelBien, ordensuministro.unidadMedida, ordensuministro.minimo, ordensuministro.maximo, ordensuministro.id_ordenSuministro, ordensuministro.cantidad, ordensuministro.precioUnitario,
 ordensuministro.importe, ordensuministro.claveUnicaOrden, ordensuministro.claveContrato, ordensuministro.diasVencidos, ordensuministro.procentaje, ordensuministro.totalPenalizacion from proveedores inner join numeroorden on numeroorden.claveUnicaContrato='$num' inner join ordensuministro on ordensuministro.claveUnicaOrden = '$num' and ordensuministro.claveContrato = $var and ordensuministro.penalizar = 1  where id_proveedor= $var ";
 $resultado = mysqli_query($conexion2, $sql2);
@@ -241,7 +243,7 @@ Centro Integral del Servicios Farmacéuticos.'), 0);
     $pdf->Ln(43);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(570, 25, '', 0);
-    $pdf->Cell(300, 20, utf8_decode('Ixtapaluca, Estado de México a ').date('d-m-Y').'', 0);
+    $pdf->Cell(300, 20, utf8_decode('Ixtapaluca, Estado de México a ').$rowfechapenalizacion['fechaRegistroPenalizacion'].'', 0);
     $pdf->Ln(10);
     $pdf->Cell(570, 25, '', 0);
     $pdf->Cell(300, 25, utf8_decode('Oficio N°. ').$valor, 0);
