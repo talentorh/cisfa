@@ -13,6 +13,28 @@
     }
 </style>
 <script>
+  function select_contrato2022(){
+    let ID_usuario=$("#contrato2022").val();
+    let tipo=$("#tipo2022").val();
+    let ob={ID_usuario:ID_usuario, tipo:tipo};
+        $.ajax({
+            type:"POST",
+            url:"consulta.php",
+            data:ob,
+            beforeSend:function(objeto){
+                /* swal({title:'¡Seleccionado!',
+                text:'',
+                type:'success',
+                timer:1000,
+                showConfirmButton:false
+                }
+            )*/},
+            success:function(data){
+                $("#tabla_resultado").html(data)
+            }
+        }
+    )
+}
     function select_contrato2023(){
     let ID_usuario=$("#contrato2023").val();
     let tipo=$("#tipo2023").val();
@@ -74,6 +96,8 @@ function select_contrato2024(){
         Ver contratos »
         </a>
         <div class="dropdown-menu" style="margin: 0px; font-size: 14px; padding: 0px; background: #F8F8F8;">
+        <input type="hidden" value="2022" id="contrato2022"><input type="hidden" value="gratuita 2022" id="tipo2022">
+          <a class="dropdown-item" href="#" style="font-size: 13px;" onclick="select_contrato2022();">2022</a>
           <input type="hidden" value="2023" id="contrato2023"><input type="hidden" value="gratuita 2023" id="tipo2023">
           <a class="dropdown-item" href="#" style="font-size: 13px;" onclick="select_contrato2023();">2023</a>
           <input type="hidden" value="2024" id="contrato2024"><input type="hidden" value="gratuita 2024" id="tipo2024">
