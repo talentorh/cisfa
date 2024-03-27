@@ -338,8 +338,6 @@ $data[] = array(utf8_decode('             '.$b),utf8_decode('   '.$c),utf8_decod
 
 
 
-','
-
 
 ');
 
