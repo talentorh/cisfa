@@ -275,7 +275,7 @@ $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
 $pdf->Cell(90, 6, 'Proveedor:                           ', 0);
 $pdf->Cell(1, 30, ' ', 0);
-$pdf->MultiCell(300, 7, utf8_decode($row_a['datoPersonalProveedor']), 0);
+$pdf->MultiCell(214, 7, utf8_decode($row_a['datoPersonalProveedor']), 0);
 $pdf->Ln(6);
 $pdf->Cell(110, 0, utf8_decode('Contrato:                              ').$row_s['numero_pedido'], 0);
 $pdf->Ln(0);
@@ -288,7 +288,7 @@ $pdf->Cell(30, -20, utf8_decode('Fecha expedición: '.$fechaformateada), 0);
 $pdf->Cell(140, 30, ' ', 0);
 $pdf->Cell(90, 6, 'Correo:       ', 0);
 $pdf->Cell(1, 30, ' ', 0);
-$pdf->MultiCell(300, 6, $row_a['correoElectronico'], 0);
+$pdf->MultiCell(214, 6, $row_a['correoElectronico'], 0);
 $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
 $pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
@@ -297,7 +297,9 @@ $pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
   $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
   $pdf->Ln(20);
   $pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:   ').utf8_decode($almacen), 0);
-  $pdf->Ln(10);
+  $pdf->SetXY(530, 153);
+    $pdf->Cell(110, 20, 'Fecha Limite de Entrega: '.utf8_decode($fecha), 0);
+  $pdf->Ln(25);
   if($validaclaveoperador != ''){
     $pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("LA QUE INDIQUE EL OPERADO LOGISTICO, citas@birmex.mx"), 0);
     }else{
@@ -310,8 +312,7 @@ $pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
     $pdf->Ln(4);
     $pdf->Cell(50, 20, '       Partida presupuestal:  25301', 0);
     $pdf->Cell(0, 30, ' ', 0);
-    $pdf->SetXY(530, 150);
-    $pdf->Cell(110, 20, 'Fecha Limite de Entrega: '.utf8_decode($fecha), 0);
+
     $pdf->SetXY(530, 200);
     $pdf->Cell(110, 20, 'Tipo de Entrega:               Directa', 0);
     $pdf->SetFillColor(210, 208, 210);
