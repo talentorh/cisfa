@@ -9,9 +9,7 @@ $validaclaveoperador = $rowoperador['claveUnicaOrden'];
 $sql2 = "SELECT *, numeroorden.totalOrden from proveedores inner join numeroorden on numeroorden.claveUnicaContrato='$num' where id_proveedor= $var ";
 $resultado = mysqli_query($conexion2, $sql2);
 $row_s = mysqli_fetch_assoc($resultado);
-$fechainicio = $row_s['fechaRegistro'];
-  $fechaformateada = date("d-m-Y", strtotime($fechainicio));
-  $fecha = date("d-m-Y",strtotime($row_s['fechaRegistro']."+ 15 days"));
+
   $numeroproveedor = $row_s['numero_proveedor'];
 $sql = "SELECT ordensuministro.partidaPresupuestal, ordensuministro.claveHraei, ordensuministro.cuadroBasico, ordensuministro.cucop, ordensuministro.descripcionDelBien, 
 ordensuministro.unidadMedida, ordensuministro.minimo, ordensuministro.maximo, ordensuministro.id_ordenSuministro, ordensuministro.cantidad, ordensuministro.precioUnitario,
@@ -36,6 +34,9 @@ $resultados = mysqli_query($conexion2, $sql2s);
       return '$'.$money;
     } // numeric
   }
+  $fechainicio = $row_s['fechaRegistro'];
+  $fechaformateada = date("d-m-Y", strtotime($fechainicio));
+  $fecha = date("d-m-Y",strtotime($row_s['fechaRegistro']."+ 15 days"));
 $output = '';
 $output .= '<head><img src="imagenes/gobmx.png" style="height: 75px;"><img src="imagenes/ImagenIMSS.jpg" style="height: 75px;"></head>';
 $output .= '<header style="margin-top: -60px; text-align: center;"><b>ORDEN DE PEDIDO</b></header>';
