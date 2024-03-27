@@ -269,18 +269,18 @@ $pdf->Cell(500);
     $pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("LA QUE INDIQUE EL OPERADO LOGISTICO, citas@birmex.mx"), 0);
     }else{
   $pdf->MultiCell(500, 10, utf8_decode('      Dirección de Entrega:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
-                                         IXTAPALUCA, ESTADO DE MÉXICO."), 0);
+                                          IXTAPALUCA, ESTADO DE MÉXICO."), 0);
     }
     $pdf->Ln(5);
     $pdf->MultiCell(500, 10, utf8_decode('           Dirección de Final:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
-                                         IXTAPALUCA, ESTADO DE MÉXICO."), 0);
+                                          IXTAPALUCA, ESTADO DE MÉXICO."), 0);
     $pdf->Ln(4);
     $pdf->Cell(50, 20, '       Partida presupuestal:  25301', 0);
     $pdf->Cell(450);
     $pdf->Cell(110, 0, 'Tipo de Entrega:               Directa', 0);
     $pdf->SetFillColor(210, 208, 210);
     
-    $pdf->Ln(60);
+    $pdf->Ln(30);
     $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
     
   /**$pdf->Cell(505, 25, '', 0);
@@ -334,7 +334,10 @@ $k=formatMoney($fila['importe']);
 $l=formatMoney($row_s['totalOrden']);
 
 
-$data[] = array(utf8_decode('             '.$b),utf8_decode('   '.$c),utf8_decode('     '.$d),utf8_decode($e),utf8_decode('        '.$f),utf8_decode('                '.$i),utf8_decode('            '. $j),utf8_decode('                 '.$k));
+$data[] = array(utf8_decode('             '.$b),utf8_decode('   '.$c),utf8_decode('     '.$d),utf8_decode($e),utf8_decode('        '.$f),utf8_decode('                '.$i),utf8_decode('            '. $j),utf8_decode('                 '.$k),'
+
+
+');
 
 }
 /*$pdf->Ln(105);
@@ -347,9 +350,10 @@ $pdf->Cell(300, 0, 'Subtotal: '.formatMoney($row_s['totalOrden']).'');
   $pdf->Cell(30, -60, 'Total:       '.formatMoney($row_s['totalOrden']).'');*/
 
 $pdf->morepagestable($data);
-$pdf->Ln(18);
+$pdf->Ln(0);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
+
 $pdf->Cell(800, 12, '                                                                                                                                                                                                                                                                                                                                      SUB TOTAL:                   '.formatMoney($row_s['totalOrden']).'',1,0,'C', True);
 $pdf->Ln(11);
 
