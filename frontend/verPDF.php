@@ -238,7 +238,7 @@ $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
   $pdf->Cell(300, 0, utf8_decode('Número de procedimiento: ').$row_s['numero_procedimiento'],0, 1);
 $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
-$pdf->MultiCell(280, 7, ('Proveedor:                        ').utf8_decode($row_a['datoPersonalProveedor']), 0);
+$pdf->MultiCell(300, 7, ('Proveedor:                        ').utf8_decode($row_a['datoPersonalProveedor']), 0);
 $pdf->Ln(6);
 $pdf->Cell(110, 0, utf8_decode('Contrato:                              ').$row_s['numero_pedido'], 0);
 $pdf->Ln(0);
