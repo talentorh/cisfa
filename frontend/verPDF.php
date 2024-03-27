@@ -342,6 +342,7 @@ $data[] = array(utf8_decode('             '.$b),utf8_decode('   '.$c),utf8_decod
 ');
 
 }
+  }
 /*$pdf->Ln(105);
 $pdf->Cell(300, 0, 'Subtotal: '.formatMoney($row_s['totalOrden']).'');
   $pdf->Ln(25);
@@ -370,7 +371,7 @@ $pdf->Ln(0);
 $pdf->SetFont('Times', '', 7);
 
 $pdf->Output("$nombreproveedor $num.pdf", 'I');
-}
+
 //Salida del documento
 
   
