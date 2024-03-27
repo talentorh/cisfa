@@ -2,6 +2,11 @@
 date_default_timezone_set('America/Monterrey'); 
 require 'conexion.php';
 
+$hoy=date("Y-m-d");
+$costos=base64_decode($_GET['total']);
+$id_unico=base64_decode($_GET['id_unico']);
+$valor2=base64_decode($_GET['claveContrato']);
+
 $var= base64_decode($_GET['var']);
 $num = base64_decode($_GET['valor2']);
 $birmex = base64_decode($_GET['birmex']);
