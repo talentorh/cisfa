@@ -100,7 +100,7 @@ $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
 	
 	<td width="45%" style="background-color: white;">         
 	<h4 style="margin-top:  0px; margin-left: 80px;">Proveedor:<p style="margin-top: -39px; margin-left: 167px;">'.$row_a['datoPersonalProveedor'].'</p></h4>
-	<h4 style="margin-top: -13px; margin-left: 80px;">Telefono:<p style="margin-top: -39px; margin-left: 167px; ">'.$row_a['telefono'].'</p></h4>
+	<h4 style="margin-top: -13px; margin-left: 80px;">Telefono:<p style="margin-top: -39px; margin-left: 167px; ">59729800 Ext 1288</p></h4>
 	<h4 style="margin-top: -13px; margin-left: 80px;">Correo:<p style="margin-top: -39px; margin-left: 167px; ">'.$row_a['correoElectronico'].'</p></h4>
 	<h4 style="margin-top: -13px; margin-left: 80px;">CLUES destino:&nbsp;<p style="margin-top: -39px; margin-left: 167px;">MC55A018786</p></h4>
 	</td>
