@@ -1,12 +1,43 @@
 <?php error_reporting(0);
-date_default_timezone_set('America/Monterrey');
+date_default_timezone_set('America/Monterrey'); 
 require 'conexion.php';
 
 $var= base64_decode($_GET['var']);
 $num = base64_decode($_GET['valor2']);
+$birmex = base64_decode($_GET['birmex']);
+if($birmex != ''){
+  $sqlGuardaClave = $conexion2->query("INSERT into direccionoperadorlogistico(claveUnicaOrden) values('$birmex')");
+}
+if($birmex == ''){
+  $sqlDelete = $conexion2->query("DELETE from direccionoperadorlogistico where claveUnicaOrden = '$num'");
+}
+
+
 $sqloperador = $conexion2->query("SELECT claveUnicaOrden from direccionoperadorlogistico where claveUnicaOrden = '$num'");
   $rowoperador = mysqli_fetch_assoc($sqloperador);
-$validaclaveoperador = $rowoperador['claveUnicaOrden'];
+  $validaclaveoperador = $rowoperador['claveUnicaOrden'];
+/*$quer = $conexion2->query("UPDATE ordensuministro
+INNER JOIN numeroorden ON ordensuministro.claveUnicaOrden = numeroorden.claveUnicaContrato
+SET ordensuministro.fechaorden = numeroorden.fechaRegistro
+WHERE numeroorden.claveUnicaContrato = ordensuministro.claveUnicaOrden");*/
+
+/*$quer2 = $conexion2->query("UPDATE ordensuministro 
+INNER JOIN proveedores ON ordensuministro.claveContrato = proveedores.id_proveedor 
+SET ordensuministro.nombreproveedor = proveedores.nombre_proveedor 
+WHERE proveedores.id_proveedor = ordensuministro.claveContrato");*/
+
+$quer3 = $conexion2->query("UPDATE ordensuministro 
+INNER JOIN proveedores ON ordensuministro.claveContrato = proveedores.id_proveedor 
+SET ordensuministro.numerodecontrato = proveedores.numero_pedido 
+WHERE proveedores.id_proveedor = ordensuministro.claveContrato");
+
+$querY = "UPDATE numeroorden set id_contrato = $id_unico, totalOrden= $costos, fechaRegistro= '$hoy'
+where claveUnicaContrato = '$valor2' limit 1";
+$edita= mysqli_query($conexion2, $querY);
+
+$query = "UPDATE proveedores set cuentaOrdenSuminstro = 1 where id_proveedor = $id_unico";
+$resul = mysqli_query($conexion2, $query);
+
 $sql2 = "SELECT *, numeroorden.totalOrden from proveedores inner join numeroorden on numeroorden.claveUnicaContrato='$num' where id_proveedor= $var ";
 $resultado = mysqli_query($conexion2, $sql2);
 $row_s = mysqli_fetch_assoc($resultado);
