@@ -22,6 +22,20 @@ $result = mysqli_query($conexion2, $sql);
 $sql2s = "SELECT * from datosproveedor where id_datoProveedor= $numeroproveedor ";
 $resultados = mysqli_query($conexion2, $sql2s);
   $row_a = mysqli_fetch_assoc($resultados);
+  function formatMoney($number, $cents = 1) { // cents: 0=never, 1=if needed, 2=always
+    if (is_numeric($number)) { // a number
+      if (!$number) { // zero
+        $money = ($cents == 2 ? '0.00' : '0'); // output zero
+      } else { // value
+        if (floor($number) == $number) { // whole number
+          $money = number_format($number, ($cents == 2 ? 2 : 0)); // format
+        } else { // cents
+          $money = number_format(round($number, 2), ($cents == 0 ? 0 : 2)); // format
+        } // integer or decimal
+      } // value
+      return '$'.$money;
+    } // numeric
+  }
 $output = '';
 $output .= '<head><img src="imagenes/gobmx.png" style="height: 75px;"><img src="imagenes/ImagenIMSS.jpg" style="height: 75px;"></head>';
 $output .= '<header style="margin-top: -60px; text-align: center;"><b>ORDEN DE PEDIDO</b></header>';
@@ -95,39 +109,39 @@ $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
 	</tr>';
 
 
-while($invoiceItem = $result->fetch_assoc()){
+    while($invoiceItem = $result->fetch_assoc()){
 	
-	$output .= '
-	<tr>
-	<td align="center" style="font-size: 9px;">'.$invoiceItem["claveHraei"].'</td>
-	<td align="center" style="font-size: 9px;">'.$invoiceItem["cuadroBasico"].'</td>
-	<td align="center" style="font-size: 9px;">'.$invoiceItem["cucop"].'</td>
-	<td align="center" style="font-size: 9px;">'.$invoiceItem["descripcionDelBien"].'</td>
-	<td align="center" style="font-size: 9px;">'.$invoiceItem["unidadMedida"].'</td>
-    <td align="center" style="font-size: 9px;">'.$invoiceItem["cantidad"].'</td>
-	<td align="center" style="font-size: 9px;">$'.$invoiceItem["precioUnitario"].'</td>
-	<td align="center" style="font-size: 9px;">$'.$invoiceItem["importe"].'</td>   
-	</tr>';
-}
-$output .= '
-	
-	<tr >
-	<td align="right" colspan="7" style="background-color: #B8B8B8;"><b>SUB TOTAL</b></td>
-	<td align="left" style="background-color: #B8B8B8;">$'.$row_s['totalOrden'].'</td>
-	</tr>
-	<tr>
-	<td align="right" colspan="7" style="background-color: #B8B8B8;"><b>I.V.A:</b></td>
-	<td align="left" style="background-color: #B8B8B8;"></td>
-	</tr>
-	<tr>
-	<td align="right" colspan="7" style="background-color: #B8B8B8;"><b>Total:</b></td>
-	<td align="left" style="background-color: #B8B8B8;">$'.$row_s['totalOrden'].'</td>
-	</tr>';
-$output .= '
-	</table>
-	</td>
-	</tr>
-	</table>';
+        $output .= '
+        <tr>
+        <td align="center" style="font-size: 9px;">'.$invoiceItem["claveHraei"].'</td>
+        <td align="center" style="font-size: 9px;">'.$invoiceItem["cuadroBasico"].'</td>
+        <td align="center" style="font-size: 9px;">'.$invoiceItem["cucop"].'</td>
+        <td align="center" style="font-size: 9px;">'.$invoiceItem["descripcionDelBien"].'</td>
+        <td align="center" style="font-size: 9px;">'.$invoiceItem["unidadMedida"].'</td>
+        <td align="center" style="font-size: 9px;">'.$invoiceItem["cantidad"].'</td>
+        <td align="center" style="font-size: 9px;">'.formatMoney($invoiceItem["precioUnitario"]).'</td>
+        <td align="center" style="font-size: 9px;">'.formatMoney($invoiceItem["importe"]).'</td>   
+        </tr>';
+    }
+    $output .= '
+        
+        <tr >
+        <td align="right" colspan="7" style="background-color: #B8B8B8;"><b>SUB TOTAL</b></td>
+        <td align="left" style="background-color: #B8B8B8;">'.formatMoney($row_s['totalOrden']).'</td>
+        </tr>
+        <tr>
+        <td align="right" colspan="7" style="background-color: #B8B8B8;"><b>I.V.A:</b></td>
+        <td align="left" style="background-color: #B8B8B8;"></td>
+        </tr>
+        <tr>
+        <td align="right" colspan="7" style="background-color: #B8B8B8;"><b>Total:</b></td>
+        <td align="left" style="background-color: #B8B8B8;">'.formatMoney($row_s['totalOrden']).'</td>
+        </tr>';
+    $output .= '
+        </table>
+        </td>
+        </tr>
+        </table>';
 // create pdf of invoice	
 $invoiceFileName = 'Invoice-'.$num.'.pdf';
 require_once 'dompdf/src/Autoloader.php';
