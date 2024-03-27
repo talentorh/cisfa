@@ -271,19 +271,22 @@ $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
     $pdf->SetFont('Arial', '', 8);
     $pdf->Ln(15);
     $pdf->Cell(300, 0, utf8_decode('Número de procedimiento: ').$row_s['numero_procedimiento'],0, 1);
-  $pdf->Ln(15);
+  $pdf->Ln(0);
+  $pdf->Cell(500, 30, ' ', 0);
+  $pdf->MultiCell(260, 6, ('Proveedor:                        ').utf8_decode($row_a['datoPersonalProveedor']), 0);
+  $pdf->Ln(6);
   $pdf->Cell(110, 0, utf8_decode('Contrato:                              ').$row_s['numero_pedido'], 0);
-  $pdf->Ln(15);
+  $pdf->Ln(0);
+  $pdf->Cell(500, 30, ' ', 0);
+  $pdf->Cell(90, 6, 'Telefono:                           '.$row_a['telefono'], 0);
+  $pdf->Ln(12);
   $pdf->Cell(250, 0, utf8_decode('Número de suministro:         ').$num, 0);
   $pdf->Cell(80);
   $pdf->Cell(30, -20, utf8_decode('Fecha expedición: '.$fechaformateada), 0);
-  $pdf->Cell(141, 30, ' ', 0);
-  $pdf->Cell(110, -60, ('Proveedor:                        ').utf8_decode($row_a['datoPersonalProveedor']), 0);
-  $pdf->Cell(-110, 30, ' ', 0);
-  $pdf->Cell(90, -30, 'Telefono:                           '.$row_a['telefono'], 0);
-  $pdf->Cell(-90, 30, ' ', 0);
-  $pdf->Cell(110, -5, 'Correo:                              '.$row_a['correoElectronico'], 0);
-  $pdf->Cell(-110, 30, ' ', 0);
+  $pdf->Cell(140, 30, ' ', 0);
+  $pdf->MultiCell(260, 6, 'Correo:                              '.$row_a['correoElectronico'], 0);
+  $pdf->Ln(0);
+  $pdf->Cell(500, 30, ' ', 0);
   $pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
     $pdf->SetFillColor(210, 208, 210);
     $pdf->Ln(20);
@@ -292,8 +295,7 @@ $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
     $pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:   ').utf8_decode($almacen), 0);
     $pdf->Ln(10);
     if($validaclaveoperador != ''){
-      $pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("OPERADOR LOGÍSTICO BOULEVARD TULTITLÁN ORIENTE NO. 12, SANTIAGUITO, TULTITLÁN DE 
-                                           MARIANO ESCOBEDO, ESTADO DE MÉXICO, C.P. 54900"), 0);
+      $pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("LA QUE INDIQUE EL OPERADO LOGISTICO, citas@birmex.mx"), 0);
       }else{
     $pdf->MultiCell(500, 10, utf8_decode('      Dirección de Entrega:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
                                            IXTAPALUCA, ESTADO DE MÉXICO."), 0);
@@ -301,7 +303,7 @@ $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
       $pdf->Ln(10);
       $pdf->MultiCell(500, 10, utf8_decode('           Dirección de Final:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
                                            IXTAPALUCA, ESTADO DE MÉXICO."), 0);
-      $pdf->Ln(10);
+      $pdf->Ln(4);
       $pdf->Cell(50, 20, '       Partida presupuestal:  25301', 0);
       $pdf->Cell(0, 30, ' ', 0);
       $pdf->SetXY(530, 150);
