@@ -347,7 +347,7 @@ $pdf->Cell(300, 0, 'Subtotal: '.formatMoney($row_s['totalOrden']).'');
   $pdf->Cell(30, -60, 'Total:       '.formatMoney($row_s['totalOrden']).'');*/
 
 $pdf->morepagestable($data);
-$pdf->Ln(14);
+$pdf->Ln(17);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
 $pdf->Cell(800, 12, '                                                                                                                                                                                                                                                                                                                                      SUB TOTAL:                   '.formatMoney($row_s['totalOrden']).'',1,0,'C', True);
