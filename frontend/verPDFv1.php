@@ -68,7 +68,7 @@ $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
 	</td>
 	</tr>
 	</table>';
-	$output .= '<div style="height: 15px; background-color: #C8C8C8; margin-top: -10px;"></div>';
+	$output .= '<div style="height: 15px; background-color: #C8C8C8; margin-top: -40px;"></div>';
 	$output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0" style="font-size: 12px;">
 	
 	<tr>
