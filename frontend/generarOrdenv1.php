@@ -1,4 +1,5 @@
 <?php error_reporting(0);
+date_default_timezone_set('America/Monterrey');
 require 'conexion.php';
 
 $var= base64_decode($_GET['var']);
@@ -120,7 +121,7 @@ $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
         <td align="center" style="font-size: 9px;">'.$invoiceItem["descripcionDelBien"].'</td>
         <td align="center" style="font-size: 9px;">'.$invoiceItem["unidadMedida"].'</td>
         <td align="center" style="font-size: 9px;">'.$invoiceItem["cantidad"].'</td>
-        <td align="center" style="font-size: 9px;">'.$invoiceItem["precioUnitario"].'</td>
+        <td align="center" style="font-size: 9px;">'.formatMoney($invoiceItem["precioUnitario"]).'</td>
         <td align="center" style="font-size: 9px;">'.formatMoney($invoiceItem["importe"]).'</td>   
         </tr>';
     }
