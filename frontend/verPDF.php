@@ -262,24 +262,22 @@ $pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
   $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
   $pdf->Ln(20);
   $pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:   ').utf8_decode($almacen), 0);
-  $pdf->SetXY(530, 153);
-    $pdf->Cell(110, 20, 'Fecha Limite de Entrega: '.utf8_decode($fecha), 0);
-  $pdf->Ln(25);
+$pdf->Cell(500);
+    $pdf->Cell(110, 0, 'Fecha Limite de Entrega: '.utf8_decode($fecha), 0);
+  $pdf->Ln(5);
   if($validaclaveoperador != ''){
     $pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("LA QUE INDIQUE EL OPERADO LOGISTICO, citas@birmex.mx"), 0);
     }else{
   $pdf->MultiCell(500, 10, utf8_decode('      Dirección de Entrega:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
                                          IXTAPALUCA, ESTADO DE MÉXICO."), 0);
     }
-    $pdf->Ln(10);
+    $pdf->Ln(5);
     $pdf->MultiCell(500, 10, utf8_decode('           Dirección de Final:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
                                          IXTAPALUCA, ESTADO DE MÉXICO."), 0);
     $pdf->Ln(4);
     $pdf->Cell(50, 20, '       Partida presupuestal:  25301', 0);
-    $pdf->Cell(0, 30, ' ', 0);
-
-    $pdf->SetXY(530, 200);
-    $pdf->Cell(110, 20, 'Tipo de Entrega:               Directa', 0);
+    $pdf->Cell(450);
+    $pdf->Cell(110, 0, 'Tipo de Entrega:               Directa', 0);
     $pdf->SetFillColor(210, 208, 210);
     
     $pdf->Ln(60);
