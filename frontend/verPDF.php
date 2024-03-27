@@ -249,7 +249,7 @@ $pdf->Cell(250, 0, utf8_decode('Número de suministro:         ').$num, 0);
 $pdf->Cell(80);
 $pdf->Cell(30, -20, utf8_decode('Fecha expedición: '.$fechaformateada), 0);
 $pdf->Cell(140, 30, ' ', 0);
-$pdf->MultiCell(300, 6, 'Correo:                              '.$row_a['correoElectronico'], 0);
+$pdf->MultiCell(300, 6, 'Correo:                    '.$row_a['correoElectronico'], 0);
 $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
 $pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
