@@ -36,10 +36,15 @@ $resultados = mysqli_query($conexion2, $sql2s);
       return '$'.$money;
     } // numeric
   }
-$output = '';
+  require_once 'dompdf/src/Autoloader.php';
+  Dompdf\Autoloader::register();
+  use Dompdf\Dompdf;
+  
+$output = '<html>';
 $output .= '<head><img src="imagenes/gobmx.png" style="height: 75px;"><img src="imagenes/ImagenIMSS.jpg" style="height: 75px;"></head>';
 $output .= '<header style="margin-top: -60px; text-align: center;"><b>ORDEN DE PEDIDO</b></header>';
 $output .= '<div style="height: 15px; background-color: #C8C8C8; margin-top: -15px;"></div>';
+$output .= '<body style="padding: 0px;">';
 $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
 	
 	<tr>
@@ -54,17 +59,15 @@ $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
 	<b>Número de procedimiento:</b>&nbsp;'.$row_s['numero_procedimiento'].'<br />
 	<b>Contrato:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row_s['numero_pedido'].'<br /> 
 	<b>Número de suministro:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$num.'<br />
-	<br/>
-	<br/>
-	<br/>
-	<br/>
+    <b>Partida presupuestal:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25301<br />
+	
 	</td>
 	
 	<td width="45%" style="background-color: white;">         
 	<h4 style="margin-top:  0px; margin-left: 80px;">Proveedor:<p style="margin-top: -39px; margin-left: 167px;">'.$row_a['datoPersonalProveedor'].'</p></h4>
 	<h4 style="margin-top: -13px; margin-left: 80px;">Telefono:<p style="margin-top: -39px; margin-left: 167px; ">59729800 Ext 1288</p></h4>
 	<h4 style="margin-top: -13px; margin-left: 80px;">Correo:<p style="margin-top: -39px; margin-left: 167px; ">'.$row_a['correoElectronico'].'</p></h4>
-	<h4 style="margin-top: -13px; margin-left: 80px;">CLUES destino:&nbsp;<p style="margin-top: -39px; margin-left: 167px;">MC55A018786</p></h4>
+	<h4 style="margin-top: -13px; margin-left: 80px;">CLUES destino:&nbsp;<p style="margin-top: -39px; margin-left: 167px;">MCSSA018786</p></h4>
 	</td>
 	</tr>
 	</table>';
@@ -83,19 +86,14 @@ $output .= '<table width="100%" border="0" cellpadding="5" cellspacing="0">
 
 	
 	<td width="45%" style="background-color: white;"><br>       
-	<b>Fecha Limite de Entrega:</b><p style="margin-top: -15px; margin-left: 135px; text-align: left; font-size: 14px;">'.$fecha.'</p>
-	<br/>
-	<br/>
-	<br/>
-	<b>Tipo de Entrega:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECTA<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
+	<b style="font-size: 12px;">Fecha Limite de Entrega:</b><p style="margin-top: -15px; margin-left: 135px; text-align: left; font-size: 12px;">'.$fecha.'</p>
+	
+	<b style="font-size: 12px;">Tipo de Entrega:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECTA<br/>
+	
 	</td>
 	</tr>
 	</table>';
-	$output .= '<div style="height: 15px; background-color: #C8C8C8; margin-top: -20px;"></div>';
+	$output .= '<div style="height: 15px; background-color: #C8C8C8; margin-top: 0px;"></div>';
 	$output .= '<table width="100%" border="1" cellpadding="5" cellspacing="0" style="margin-top: 5px; ">
 	<tr>
 	<th align="center" style="font-size: 9px; color: white; background-color: grey;">CLAVE INTERNA DE ALMACEN</th>
@@ -124,32 +122,53 @@ while($invoiceItem = $result->fetch_assoc()){
 	</tr>';
 }
 $output .= '
-	
+<tr >
+<td align="right" colspan="7" style="background-color: white; font-size: 12px;"><b>$</b></td>
+<td align="left" style="background-color: white; font-size: 12px;">-</td>
+</tr>
+<tr >
+	<td align="right" colspan="7" style="background-color: white; font-size: 12px;"><b>$</b></td>
+	<td align="left" style="background-color: white; font-size: 12px;">-</td>
+	</tr>
+    <tr >
+	<td align="right" colspan="7" style="background-color: white; font-size: 12px;"><b>$</b></td>
+	<td align="left" style="background-color: white; font-size: 12px;">-</td>
+	</tr>
 	<tr >
-	<td align="right" colspan="7" style="background-color: #B8B8B8;"><b>SUB TOTAL</b></td>
-	<td align="left" style="background-color: #B8B8B8;">'.formatMoney($row_s['totalOrden']).'</td>
+	<td align="right" colspan="7" style="background-color: #B8B8B8; font-size: 12px;"><b>SUB TOTAL</b></td>
+	<td align="left" style="background-color: #B8B8B8; font-size: 12px;">'.formatMoney($row_s['totalOrden']).'</td>
 	</tr>
 	<tr>
-	<td align="right" colspan="7" style="background-color: #B8B8B8;"><b>I.V.A:</b></td>
-	<td align="left" style="background-color: #B8B8B8;"></td>
+	<td align="right" colspan="7" style="background-color: #B8B8B8; font-size: 12px;"><b>I.V.A:</b></td>
+	<td align="left" style="background-color: #B8B8B8; font-size: 12px;"></td>
 	</tr>
 	<tr>
-	<td align="right" colspan="7" style="background-color: #B8B8B8;"><b>Total:</b></td>
-	<td align="left" style="background-color: #B8B8B8;">'.formatMoney($row_s['totalOrden']).'</td>
-	</tr>';
-$output .= '
-	</table>
-	</td>
-	</tr>
-	</table>';
+	<td align="right" colspan="7" style="background-color: #B8B8B8; font-size: 12px;"><b>Total:</b></td>
+	<td align="left" style="background-color: #B8B8B8; font-size: 12px;">'.formatMoney($row_s['totalOrden']).'</td>
+	</tr></table>';
+    
+    $output .= ' <div style="page-break-after:always;"></div>
+    <div style="width: 40%; height: 105px; float: right; background-color: white; border: 1px solid grey; margin-top: 0%;">
+        
+        <div style="width: 100%; height: 15px; background-color: grey; border: 1px solid grey; text-align: center; color: white; font-size: 12px;">Administrador de contrato</div>
+        <div style="width: 100%; height: 30px; background-color: white; border: 1px solid grey; font-size: 12px;">Nombre</div>
+        <div style="width: 100%; height: 30px; background-color: white; border: 1px solid grey; font-size: 12px;">Cargo</div>
+        <div style="width: 100%; height: 30px; background-color: white; border: 1px solid grey; font-size: 12px;">Firma</div>
+    </div>
+
+        <div style="width: 40%; height: 75px;  float: right; background-color: white; border: 1px solid grey; margin-top: 0%;">
+        <div style="width: 100%; height: 30px; background-color: white; border: 1px solid grey; text-align: center; color: black; font-size: 12px;">Nombre y firma de proveedor de aceptación</div>
+        </div>
+        
+        </body>
+        </html>';
+    
 // create pdf of invoice	
-$invoiceFileName = 'Invoice-'.$num.'.pdf';
-require_once 'dompdf/src/Autoloader.php';
-Dompdf\Autoloader::register();
-use Dompdf\Dompdf;
+$invoiceFileName = 'Orden de pedido-'.$num.'.pdf';
 $dompdf = new Dompdf();
-$dompdf->loadHtml(html_entity_decode($output));
-$dompdf->setPaper('A4', 'landscape');
+  $dompdf->loadHtml(html_entity_decode($output));
+$dompdf->setPaper('letter', 'landscape');
 $dompdf->render();
 $dompdf->stream($invoiceFileName, array("Attachment" => false));
+
 ?> 

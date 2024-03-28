@@ -219,63 +219,64 @@ $this->Cell(800, 10, '',0, 0, 'C', 'true');
   }
 }
 
-  function formatMoney($number, $cents = 1) { // cents: 0=never, 1=if needed, 2=always
-      if (is_numeric($number)) { // a number
-        if (!$number) { // zero
-          $money = ($cents == 2 ? '0.00' : '0'); // output zero
-        } else { // value
-          if (floor($number) == $number) { // whole number
-            $money = number_format($number, ($cents == 2 ? 2 : 0)); // format
-          } else { // cents
-            $money = number_format(round($number, 2), ($cents == 0 ? 0 : 2)); // format
-          } // integer or decimal
-        } // value
-        return '$'.$money;
-      } // numeric
-    } // formatMoney
-  $almacen = "ALMACÉN GENERAL DEL HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DE IXTAPALUCA";
-  $domicilio = "CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE IXTAPALUCA, ESTADO DE MÉXICO.";
-  //$fecha=" DENTRO DE LOS 15 DIAS POSTERIORES A LA NOTIFICACION DE LA ORDEN DE SUMINISTRO";
-  
-  $direccion = utf8_decode('Dirección de Operaciones.
+function formatMoney($number, $cents = 1) { // cents: 0=never, 1=if needed, 2=always
+  if (is_numeric($number)) { // a number
+    if (!$number) { // zero
+      $money = ($cents == 2 ? '0.00' : '0'); // output zero
+    } else { // value
+      if (floor($number) == $number) { // whole number
+        $money = number_format($number, ($cents == 2 ? 2 : 0)); // format
+      } else { // cents
+        $money = number_format(round($number, 2), ($cents == 0 ? 0 : 2)); // format
+      } // integer or decimal
+    } // value
+    return '$'.$money;
+  } // numeric
+} // formatMoney
+$almacen ="ALMACÉN GENERAL DEL HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DE IXTAPALUCA";
+$operaordireccion = "Laboratorios de Biológicos y Reactivos de México, S.A de C.V";
+$domicilio = "CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE IXTAPALUCA, ESTADO DE MÉXICO.";
+//$fecha=" DENTRO DE LOS 15 DIAS POSTERIORES A LA NOTIFICACION DE LA ORDEN DE SUMINISTRO";
+
+$direccion = utf8_decode('Dirección de Operaciones.
 Centro Integral de Servicios Farmacéuticos.');
 
-  while($row_s=$resultado->fetch_assoc()){
-      //$nombreproveedor = $row_s['nombre_proveedor'];
-      $fechainicio = $row_s['fechaRegistro'];
-  $fechaformateada = date("d-m-Y", strtotime($fechainicio));
-  $fecha = date("d-m-Y",strtotime($row_s['fechaRegistro']."+ 15 days"));
-      $numeroproveedor = $row_s['numero_proveedor'];
-      $sql2s = "SELECT * from datosproveedor where id_datoProveedor= $numeroproveedor ";
+$row_s= mysqli_fetch_assoc($resultado);
+  //$nombreproveedor = $row_s['nombre_proveedor'];
+  $fechainicio = $row_s['fechaRegistro'];
+$fechaformateada = date("d-m-Y", strtotime($fechainicio));
+$fecha = date("d-m-Y",strtotime($row_s['fechaRegistro']."+ 15 days"));
+  $numeroproveedor = $row_s['numero_proveedor'];
+  $sql2s = "SELECT * from datosproveedor where id_datoProveedor= $numeroproveedor ";
 $resultados = mysqli_query($conexion2, $sql2s);
-  $row_a = mysqli_fetch_assoc($resultados);
+$row_a = mysqli_fetch_assoc($resultados);
+
+$pdf = new PDF('L','pt');
+$pdf->AliasNbPages();
+$pdf->AddPage();
+$pdf->Image('imagenes/gobmx.png', 20 ,10, 130 , 70);
+  $pdf->Image('imagenes/ImagenIMSS.jpg' , 150 ,18, 95 , 55);
   
-  $pdf = new PDF('L','pt');
-  $pdf->AliasNbPages();
-  $pdf->AddPage();
-  $pdf->Image('imagenes/gobmx.png', 20 ,10, 130 , 70);
-      $pdf->Image('imagenes/ImagenIMSS.jpg' , 150 ,18, 95 , 55);
-      
-      $pdf->SetFont('Times','',8);
-      // Movernos a la derecha
-      $pdf->Cell(590, 5, '', 0);
-      // Título
-      $pdf->Ln(20);
-  $pdf->Cell(350, 10, '', 0);
-  $pdf->Cell(400, 6, utf8_decode('ORDEN DE PEDIDO'), 0);
+  $pdf->SetFont('Times','',8);
+  // Movernos a la derecha
+  $pdf->Cell(590, 5, '', 0);
+  // Título
+  $pdf->Ln(20);
+$pdf->Cell(350, 10, '', 0);
+$pdf->Cell(400, 6, utf8_decode('ORDEN DE PEDIDO'), 0);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->Ln(20);
 $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
-      // Salto de línea
-      $pdf->Ln(4);
-  $pdf->SetFont('Arial', '', 8);
-  $pdf->Ln(15);
-  $pdf->Cell(300, 0, utf8_decode('Número de procedimiento: ').$row_s['numero_procedimiento'],0, 1);
+  // Salto de línea
+  $pdf->Ln(4);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Ln(15);
+$pdf->Cell(300, 0, utf8_decode('Número de procedimiento:   ').$row_s['numero_procedimiento'],0, 1);
 $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
 $pdf->Cell(90, 6, 'Proveedor:                           ', 0);
 $pdf->Cell(1, 30, ' ', 0);
-$pdf->MultiCell(214, 7, utf8_decode($row_a['datoPersonalProveedor']), 0);
+$pdf->MultiCell(214, 7.5, utf8_decode($row_a['datoPersonalProveedor']), 0);
 $pdf->Ln(6);
 $pdf->Cell(110, 0, utf8_decode('Contrato:                              ').$row_s['numero_pedido'], 0);
 $pdf->Ln(0);
@@ -288,72 +289,79 @@ $pdf->Cell(30, -20, utf8_decode('Fecha expedición: '.$fechaformateada), 0);
 $pdf->Cell(140, 30, ' ', 0);
 $pdf->Cell(90, 6, 'Correo:       ', 0);
 $pdf->Cell(1, 30, ' ', 0);
-$pdf->MultiCell(214, 6, $row_a['correoElectronico'], 0);
+$pdf->MultiCell(214, 7.5, $row_a['correoElectronico'], 0);
 $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
-$pdf->Cell(110, 20, 'CLUES destino:                MC55A018786', 0);
-  $pdf->SetFillColor(210, 208, 210);
-  $pdf->Ln(20);
-  $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
-  $pdf->Ln(20);
-  $pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:   ').utf8_decode($almacen), 0);
+$pdf->Cell(110, 20, 'CLUES destino:                MCSSA018786', 0);
+$pdf->SetFillColor(210, 208, 210);
+$pdf->Ln(20);
+$pdf->Cell(800, 10, '',0, 0, 'C', 'true');
+$pdf->Ln(20);
+if($validaclaveoperador != ''){
+$pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:  ').utf8_decode($operaordireccion), 0);
+}else{
+$pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:  ').utf8_decode($almacen), 0);
+}
 $pdf->Cell(500);
-    $pdf->Cell(110, 0, 'Fecha Limite de Entrega: '.utf8_decode($fecha), 0);
-  $pdf->Ln(5);
-  if($validaclaveoperador != ''){
-    $pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("LA QUE INDIQUE EL OPERADO LOGISTICO, citas@birmex.mx"), 0);
-    }else{
-  $pdf->MultiCell(500, 10, utf8_decode('      Dirección de Entrega:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
-                                         IXTAPALUCA, ESTADO DE MÉXICO."), 0);
-    }
-    $pdf->Ln(5);
-    $pdf->MultiCell(500, 10, utf8_decode('           Dirección de Final:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
-                                         IXTAPALUCA, ESTADO DE MÉXICO."), 0);
-    $pdf->Ln(4);
-    $pdf->Cell(50, 20, '       Partida presupuestal:  25301', 0);
-    $pdf->Cell(450);
-    $pdf->Cell(110, 0, 'Tipo de Entrega:               Directa', 0);
-    $pdf->SetFillColor(210, 208, 210);
-    
-    $pdf->Ln(60);
-    $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
-    
-  /**$pdf->Cell(505, 25, '', 0);
-  $pdf->MultiCell(300, 10, ('Fecha en que recibe y acepta: '), 0);**/
- 
-  //$pdf->Image('imagenes/firmatono.jpg', 555 ,190, 75 , 75);
-  
+$pdf->Cell(110, 0, 'Fecha Limite de Entrega: '.utf8_decode($fecha), 0);
+$pdf->Ln(5);
+if($validaclaveoperador != ''){
+$pdf->MultiCell(500, 10, utf8_decode('     Dirección de Entrega:   ').utf8_decode("LA QUE INDIQUE EL OPERADOR LOGISTICO, citas.distribucion@birmex.gob.mx"), 0);
+}else{
+$pdf->MultiCell(500, 10, utf8_decode('      Dirección de Entrega:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
+                                          IXTAPALUCA, ESTADO DE MÉXICO."), 0);
+}
+$pdf->Ln(5);
+$pdf->MultiCell(500, 10, utf8_decode('           Dirección de Final:  ').utf8_decode("CARRETERA FEDERAL MÉXICO-PUEBLA KM 34.5, PUEBLO DE ZOQUIAPAN, C.P. 56530, MUNICIPIO DE 
+                                          IXTAPALUCA, ESTADO DE MÉXICO."), 0);
+$pdf->Ln(4);
+$pdf->Cell(50, 20, '       Partida presupuestal:  25301', 0);
+$pdf->Cell(450);
+if($validaclaveoperador != ''){
+$pdf->Cell(110, 0, 'Tipo de Entrega:               Operador logistico', 0);
+}else{
+$pdf->Cell(110, 0, 'Tipo de Entrega:               Directa', 0);
+}
+$pdf->SetFillColor(210, 208, 210);
+$pdf->Ln(30);
+$pdf->Cell(800, 10, '',0, 0, 'C', 'true');
 
-  $pdf->Ln(10);
-  
-  
- 
-  $pdf->SetFont('Arial', 'B', 7);
- 
-  $pdf->Ln(7);
-  $pdf->SetFillColor(163, 163, 163);
-  $pdf->SetTextColor(255,255,255);
-  $pdf->SetDrawColor(0, 0, 0);
-  
-  $pdf->Cell(105, 15, 'Clave Interna de Almacen' ,1, 0, 'C', 'true');
-  $pdf->Cell(70, 15, 'Clave del Insumo',1, 0, 'C', 'true');
-  $pdf->Cell(60, 15, 'CUCOP',1, 0, 'C', 'true');
-  $pdf->Cell(270, 15, 'DESCRIPCION',1, 0, 'C', 'true');
-  $pdf->Cell(65, 15, 'Unidad Medida',1, 0, 'C', 'true');
-  $pdf->Cell(70, 15, 'Cantidad solicitada',1, 0, 'C', 'true');
-  $pdf->Cell(70, 15, 'Precio unitario',1, 0, 'C', 'true');
-  $pdf->Cell(90, 15, 'Importe',1, 0, 'C', 'true');
- 
- 
-  
-  $pdf->Ln(16);
-  $pdf->SetFont('Arial', '', 7);
-  $pdf->SetTextColor(0,0,0);
-  $pdf->tablewidths = array(105,70,60,270,65,70,70,90);
+/**$pdf->Cell(505, 25, '', 0);
+$pdf->MultiCell(300, 10, ('Fecha en que recibe y acepta: '), 0);**/
 
-  $item = 0;
+//$pdf->Image('imagenes/firmatono.jpg', 555 ,190, 75 , 75);
 
- 
+
+$pdf->Ln(10);
+
+
+
+$pdf->SetFont('Arial', 'B', 7);
+
+$pdf->Ln(7);
+$pdf->SetFillColor(163, 163, 163);
+$pdf->SetTextColor(255,255,255);
+$pdf->SetDrawColor(0, 0, 0);
+
+$pdf->Cell(105, 15, 'Clave Interna de Almacen' ,1, 0, 'C', 'true');
+$pdf->Cell(70, 15, 'Clave del Insumo',1, 0, 'C', 'true');
+$pdf->Cell(60, 15, 'CUCOP',1, 0, 'C', 'true');
+$pdf->Cell(270, 15, 'DESCRIPCION',1, 0, 'C', 'true');
+$pdf->Cell(65, 15, 'Unidad Medida',1, 0, 'C', 'true');
+$pdf->Cell(70, 15, 'Cantidad solicitada',1, 0, 'C', 'true');
+$pdf->Cell(70, 15, 'Precio unitario',1, 0, 'C', 'true');
+$pdf->Cell(90, 15, 'Importe',1, 0, 'C', 'true');
+
+
+
+$pdf->Ln(16);
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetTextColor(0,0,0);
+$pdf->tablewidths = array(105,70,60,270,65,70,70,90);
+
+$item = 0;
+
+
 while($fila=$result->fetch_assoc()){
 
 
@@ -369,38 +377,82 @@ $k=formatMoney($fila['importe']);
 $l=formatMoney($row_s['totalOrden']);
 
 
-$data[] = array(utf8_decode('             '.$b),utf8_decode('   '.$c),utf8_decode('     '.$d),utf8_decode($e),utf8_decode('        '.$f),utf8_decode('                '.$i),utf8_decode('            '. $j),utf8_decode('                 '.$k));
+$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode('              '.$i),utf8_decode(''. $j),utf8_decode(''.$k),'
+
+
+');
 
 }
+
 /*$pdf->Ln(105);
 $pdf->Cell(300, 0, 'Subtotal: '.formatMoney($row_s['totalOrden']).'');
-  $pdf->Ln(25);
-  $pdf->Cell(505, 25, '', 0);
-  $pdf->Cell(300, -40, utf8_decode('I.V.A:       $ 0%'),'');
-  $pdf->Ln(25);
-  $pdf->Cell(505, 25, '', 0);
-  $pdf->Cell(30, -60, 'Total:       '.formatMoney($row_s['totalOrden']).'');*/
+$pdf->Ln(25);
+$pdf->Cell(505, 25, '', 0);
+$pdf->Cell(300, -40, utf8_decode('I.V.A:       $ 0%'),'');
+$pdf->Ln(25);
+$pdf->Cell(505, 25, '', 0);
+$pdf->Cell(30, -60, 'Total:       '.formatMoney($row_s['totalOrden']).'');*/
 
 $pdf->morepagestable($data);
+/*$pdf->SetFillColor(255, 255, 255);
+$pdf->SetTextColor(0,0,0);
+$pdf->Ln(10);
+$pdf->Cell(800, 12, '$:       -',1,0,'R', True);
 $pdf->Ln(11);
+$pdf->Cell(800, 12, '$:       -',1,0,'R', True);
+$pdf->Ln(11);
+$pdf->Cell(800, 12, '$:       -',1,0,'R', True);*/
+$pdf->Ln(0);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
-$pdf->Cell(800, 12, '                                                                                                                                                                                                                                                                                                                                      SUB TOTAL:                   '.formatMoney($row_s['totalOrden']).'',1,0,'C', True);
+
+$pdf->Cell(800, 12, 'SUB TOTAL:'.formatMoney($row_s['totalOrden']).'',1,0,'R', True);
 $pdf->Ln(11);
 
-$pdf->Cell(800, 12, '                                                                                                                                                                                                                                                                                                                                  I.V.A:                             ',1,1,'C', True);
-  
-$pdf->Ln(0);
+$pdf->Cell(800, 12, 'I.V.A:',1,1,'R', True);
 
-$pdf->Cell(800, 12, '                                                                                                                                                                                                                                                                                                                                               TOTAL:                   '.formatMoney($row_s['totalOrden']).'',1,1,'C', True);
+$pdf->Ln(0);
+$pdf->Cell(800, 12, 'TOTAL:'.formatMoney($row_s['totalOrden']).'',1,1,'R', True);
+$pdf->Ln(5);
+$pdf->Cell(500);
+$pdf->SetFillColor(255, 255, 255);
+$pdf->MultiCell(300, 6,'                                                         
+                                                      Administrador de contrato
+------------------------------------------------------------------------------------------------------------------------------
+
+Nombre:
+
+
+------------------------------------------------------------------------------------------------------------------------------
+Cargo:
+
+
+------------------------------------------------------------------------------------------------------------------------------
+Firma:
+
+
+
+',1,1,'R', True);
+$pdf->Ln(5);
+$pdf->Cell(500);
+$pdf->SetFillColor(255, 255, 255);
+$pdf->MultiCell(300, 6,'                                                              
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+                                          '.utf8_decode('Nombre y firma de proveedor de aceptación').'
+
+',1,1,'R', True);
 
 //$pdf->AddPage();
 $pdf->Ln(0);
 $pdf->SetFont('Times', '', 7);
 
 $pdf->Output("$nombreproveedor $num.pdf", 'I');
-}
+
 //Salida del documento
 
-  
+
 ?>
