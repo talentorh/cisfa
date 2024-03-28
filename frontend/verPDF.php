@@ -347,7 +347,10 @@ $k=formatMoney($fila['importe']);
 $l=formatMoney($row_s['totalOrden']);
 
 
-$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode(''.$i),utf8_decode(''. $j),utf8_decode(''.$k),'');
+$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode(''.$i),utf8_decode(''. $j),utf8_decode(''.$k),'
+
+
+');
 
 }
 
@@ -369,7 +372,7 @@ $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);
 $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);*/
-$pdf->Ln(15);
+$pdf->Ln(0);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
 
