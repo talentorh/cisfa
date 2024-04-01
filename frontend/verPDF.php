@@ -352,6 +352,7 @@ $data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_de
 
 
 
+
 ');
 
 }
@@ -374,7 +375,7 @@ $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);
 $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);*/
-$pdf->Ln(10);
+$pdf->Ln(11);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
 
