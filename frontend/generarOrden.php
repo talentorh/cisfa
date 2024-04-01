@@ -251,7 +251,7 @@ $fecha = date("d-m-Y",strtotime($row_s['fechaRegistro']."+ 15 days"));
 $resultados = mysqli_query($conexion2, $sql2s);
 $row_a = mysqli_fetch_assoc($resultados);
 
-$pdf = new PDF('L','pt');
+$pdf = new PDF('L','pt',array(870,870));
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->Image('imagenes/gobmx.png', 20 ,10, 130 , 70);
