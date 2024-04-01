@@ -323,7 +323,7 @@ $pdf->Cell(110, 0, 'Tipo de Entrega:               Operador logistico', 0);
 $pdf->Cell(110, 0, 'Tipo de Entrega:               Directa', 0);
 }
 $pdf->SetFillColor(210, 208, 210);
-$pdf->Ln(30);
+$pdf->Ln(17);
 $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
 
 /**$pdf->Cell(505, 25, '', 0);
@@ -377,14 +377,7 @@ $k=formatMoney($fila['importe']);
 $l=formatMoney($row_s['totalOrden']);
 
 
-$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode('              '.$i),utf8_decode(''. $j),utf8_decode(''.$k),'
-
-
-
-
-
-
-');
+$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode('              '.$i),utf8_decode(''. $j),utf8_decode(''.$k),'/n');
 
 }
 
@@ -406,7 +399,7 @@ $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);
 $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);*/
-$pdf->Ln(10);
+$pdf->Ln(0);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
 

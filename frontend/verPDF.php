@@ -266,7 +266,7 @@ $pdf->Cell(110, 20, 'CLUES destino:                MCSSA018786', 0);
   $pdf->SetFillColor(210, 208, 210);
   $pdf->Ln(20);
   $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
-  $pdf->Ln(20);
+  $pdf->Ln(10);
   if($validaclaveoperador != ''){
   $pdf->MultiCell(450, 10, utf8_decode('            Almacén Entrega:  ').utf8_decode($operaordireccion), 0);
   }else{
@@ -293,7 +293,7 @@ $pdf->Cell(500);
     $pdf->Cell(110, 0, 'Tipo de Entrega:               Directa', 0);
     }
     $pdf->SetFillColor(210, 208, 210);
-    $pdf->Ln(30);
+    $pdf->Ln(17);
     $pdf->Cell(800, 10, '',0, 0, 'C', 'true');
     
   /**$pdf->Cell(505, 25, '', 0);
@@ -347,14 +347,7 @@ $k=formatMoney($fila['importe']);
 $l=formatMoney($row_s['totalOrden']);
 
 
-$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode(''.$i),utf8_decode(''. $j),utf8_decode(''.$k),'
-
-
-
-
-
-
-');
+$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode(''.$e),utf8_decode(''.$f),utf8_decode(''.$i),utf8_decode(''. $j),utf8_decode(''.$k),'/n');
 
 }
 
