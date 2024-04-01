@@ -374,7 +374,7 @@ $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);
 $pdf->Ln(11);
 $pdf->Cell(800, 12, '$:       -',1,0,'R', True);*/
-$pdf->Ln(0);
+$pdf->Ln(10);
 $pdf->SetFillColor(210, 208, 210);
 $pdf->SetTextColor(0,0,0);
 
