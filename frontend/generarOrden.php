@@ -377,7 +377,12 @@ $k=formatMoney($fila['importe']);
 $l=formatMoney($row_s['totalOrden']);
 
 
-$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode('              '.$i),utf8_decode(''. $j),utf8_decode(''.$k),'/n');
+$data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode('              '.$i),utf8_decode(''. $j),utf8_decode(''.$k),'
+
+
+
+
+');
 
 }
 
