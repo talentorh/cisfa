@@ -281,7 +281,7 @@ $pdf->Ln(6);
 $pdf->Cell(110, 0, utf8_decode('Contrato:                              ').$row_s['numero_pedido'], 0);
 $pdf->Ln(0);
 $pdf->Cell(500, 30, ' ', 0);
-$pdf->Cell(90, 6, 'Telefono:                          '.$row_a['telefono'], 0);
+$pdf->Cell(90, 6, 'Telefono:                          55 59729800 ext 1288', 0);
 $pdf->Ln(12);
 $pdf->Cell(250, 0, utf8_decode('Número de suministro:         ').$num, 0);
 $pdf->Cell(80);
@@ -378,6 +378,8 @@ $l=formatMoney($row_s['totalOrden']);
 
 
 $data[] = array(utf8_decode(''.$b),utf8_decode(''.$c),utf8_decode(''.$d),utf8_decode($e),utf8_decode(''.$f),utf8_decode('              '.$i),utf8_decode(''. $j),utf8_decode(''.$k),'
+
+
 
 
 
