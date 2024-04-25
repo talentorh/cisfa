@@ -414,8 +414,8 @@
 
   <?php
 
-  echo '<a href="OrdenFG?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '&birmex=' . $claveUnica . '" class="btn btn-success"  style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);" >GENERAR ORDEN</a>';
-  echo '<a href="OrdenFG?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '&birmex=" class="btn btn-warning"  style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);" >GENERAR ORDEN</a>';
+  echo '<a href="OrdenFG?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '&birmex=' . $claveUnica . '" class="btn btn-success"  style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);" id="seagregabirmex">GENERAR ORDEN</a>';
+  echo '<a href="OrdenFG?var=' . $id_unico . '&valor2=' . $claveUnica . '&total=' . $var2 . '&id_unico=' . $id_unico . '&claveContrato=' . $claveUnica . '&birmex=" class="btn btn-warning"  style=" width: 150px; float: right; margin-right: 2.5%; margin-top: 0px;" onclick="cambiar_estado(this);" id="sinbirmex">GENERAR ORDEN</a>';
 
 
 
