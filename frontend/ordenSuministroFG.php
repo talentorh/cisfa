@@ -425,10 +425,10 @@
   ?>
   <a href="" class="btn btn-info" onclick="window.close();" style=" width: 150px; float: left; margin-left: 50px; margin-top: 0px;">Finalizar</a>
   <div class="col-md-2">
-<select name="agregarbirmex" class="form-control" required style="height: 32px;">
-            <option value="">Se incluye dirección de Birmex</option>
-            <option value="<?php echo $claveUnica3 ?>">Si</option>
-            <option value="">No</option>
+<select name="agregarbirmex" id="agregarbirmex" class="form-control" required style="height: 32px;">
+            <option value="" selected disabled>Se incluye dirección de Birmex</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
 </select>
   </div>
   <script>
