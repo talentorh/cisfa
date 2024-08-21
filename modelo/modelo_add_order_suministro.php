@@ -58,7 +58,7 @@ VALUES(null, '$partida', :claveHraei, :cuadroBasico, :cucop, :descripcionDelBien
 
     ));
 
-$statement = $conexion->prepare("SELECT claveMedicamento, claveContrato FROM consumorealmedicamento WHERE claveMedicamento = :claveMedicamento and claveUnica = $valor3");
+$statement = $conexion->prepare("SELECT claveMedicamento, claveContrato FROM consumorealmedicamento WHERE claveMedicamento = :claveMedicamento and claveContrato = $valor3");
 $statement->execute(array(':claveMedicamento' => $claveHRAEI));
 
 $resultado2 = $statement->fetch();
